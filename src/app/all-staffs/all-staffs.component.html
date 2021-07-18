@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="row col-lg-12 col-sm-12 col-xs-12">
+        <table class="table table-striped">
+            <thead>
+                <tr class="bg-info text-light">
+                    <th>Staff Id</th>
+                    <th>Name</th>
+                    <th>Email Id</th>
+                    <th>Phone Number</th>
+                    <th>Edit Staff</th>
+                    <th>Remove Staff</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let staff of staffs">
+                    <td>{{staff.staffId}}</td>
+                    <td>{{staff.staffName}}</td>
+                    <td>{{staff.staffEmailId}}</td>
+                    <td>{{staff.staffPhoneNumber}}</td>
+                    <td><button class="btn btn-secondary" (click)="updateRecord(staff.staffId)">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="removeStaff(staff.staffId)">Delete</button></td>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

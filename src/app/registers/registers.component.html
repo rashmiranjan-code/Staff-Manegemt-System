@@ -1,0 +1,51 @@
+<div>
+    <h3 class="text-center">{{message}}</h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-6">
+            <h4 class="mt-4 mb-4" aria-orientation="center">&nbsp;&nbsp;&nbsp; Staff Registeration Form</h4>
+            <form (ngSubmit)="registerNow(login)" #login="ngForm">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="id">Staff id</label>
+                        <input type="number" [(ngModel)]="staff.staffId" name="staffId" required
+                            class="form-control phone" placeholder="Enter Staff Id" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="staffName" [(ngModel)]="staff.staffName"
+                            placeholder="Enter Name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone number</label>
+                        <input class="form-control" type="text" name="staffPhoneNumber"
+                            [(ngModel)]="staff.staffPhoneNumber" placeholder="Enter Phone Number" />
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" required type="text" name="staffEmailId"
+                            [(ngModel)]="staff.staffEmailId" placeholder="Enter Email Id" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <br>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;
+                        <input class="btn btn-success" type="submit" name="submit" value="Register">&nbsp;&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-info ">Reset</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
