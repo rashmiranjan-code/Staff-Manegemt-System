@@ -9,24 +9,37 @@ import { StaffServiceService } from '../staff-service.service';
 })
 export class AllStaffsComponent implements OnInit {
   staffs: any;
-
+  message: any = "";
   constructor(private service: StaffServiceService, private router: Router) { }
 
   ngOnInit() {
-    let response = this.service.getStaffs();
-    response.subscribe(data => this.staffs = data);
+    this.getAllStaffs();
 
   }
   public removeStaff(staffId: string) {
-    let response = this.service.deleteStaff(staffId);
-    response.subscribe(
-      data => this.staffs = data);
-    let response1 = this.service.getStaffs();
-    response1.subscribe(data => this.staffs = data);
+    this.service.deleteStaff(staffId)
+      .subscribe(
+        (data) => {
+          this.message = data;
+          this.getAllStaffs();
+        }, error => {
+          console.log(error);
+          this.getAllStaffs();
+          this.message = 'Unable to delete! contact admin!!';
+        });
   }
 
   updateRecord(id: number) {
     this.router.navigate(["staffEdit", id]);
   }
-
+  getAllStaffs() {
+    this.service.getStaffs().subscribe(
+      (data) => {
+        this.staffs = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

@@ -21,7 +21,7 @@ export class StaffServiceService {
   public getStaffs() {
     return this.http.get("http://localhost:8081/api/staff/retrive");
   }
-  public deleteStaff(staffId) {
+  public deleteStaff(staffId: any) {
     return this.http.delete("http://localhost:8081/api/staff/delete/" + staffId);
   }
 

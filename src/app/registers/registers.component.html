@@ -7,33 +7,54 @@
         <div class="col-lg-6 col-sm-6 col-xs-6">
             <h4 class="mt-4 mb-4" aria-orientation="center">&nbsp;&nbsp;&nbsp; Staff Registeration Form</h4>
             <form (ngSubmit)="registerNow(login)" #login="ngForm">
+                <div style="color: red;">{{errSms}}</div>
                 <fieldset>
                     <div class="form-group">
                         <label for="id">Staff id</label>
-                        <input type="number" [(ngModel)]="staff.staffId" name="staffId" required
-                            class="form-control phone" placeholder="Enter Staff Id" />
+                        <input type="number" [(ngModel)]="staff.staffId" name="staffId" class="form-control"
+                            placeholder="Enter Staff Id" #idCtrl="ngModel" maxlength="5" required />
+                        <div class=" alert alert-danger" *ngIf="idCtrl.touched && !idCtrl.valid ">
+                            Enter Valid Staff Id
+                        </div>
                     </div>
+
 
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input class="form-control" type="text" name="staffName" [(ngModel)]="staff.staffName"
-                            placeholder="Enter Name" />
+                            placeholder="Enter Name" #name="ngModel" maxlength="25" pattern="^[a-z A-z]+$" required />
+                        <div class=" alert alert-danger" *ngIf="name.touched && !name.valid ">
+                            Enter Valid name
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Phone number</label>
                         <input class="form-control" type="text" name="staffPhoneNumber"
-                            [(ngModel)]="staff.staffPhoneNumber" placeholder="Enter Phone Number" />
+                            [(ngModel)]="staff.staffPhoneNumber" maxlength="13" placeholder="Enter Phone Number"
+                            #phone="ngModel" pattern="[+][0-9-]+$" required />
+                        <div class=" alert alert-danger" *ngIf="phone.touched && !phone.valid ">
+                            Enter Valid phone Number
+                        </div>
 
                     </div>
 
 
 
-                    <div class="form-group">
+                    <div class="form-group" [class.has-error]="email.invalid && email.touched && email.required">
                         <label for="email">Email</label>
-                        <input class="form-control" required type="text" name="staffEmailId"
-                            [(ngModel)]="staff.staffEmailId" placeholder="Enter Email Id" />
+                        <input required class="form-control" pattern="^[a-zA-z0-9_.+-]+@[a-zA-z0-9-]+\.[a-zA-z0-9-.]+$"
+                            type="text" name="staffEmailId" [(ngModel)]="staff.staffEmailId"
+                            placeholder="Enter Email Id" maxlength="25" #email="ngModel" required />
+                        <div class="alert alert-danger" *ngIf="email.errors?.required && email.touched">Enter Valid
+                            email</div>
+
+                        <div class="alert alert-danger" *ngIf="email.errors?.pattern && email.touched">Enter Valid
+                            email</div>
+
+
                     </div>
+
 
 
                     <div class="form-group">

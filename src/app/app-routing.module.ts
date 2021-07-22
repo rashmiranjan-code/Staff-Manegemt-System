@@ -11,7 +11,7 @@ const routes: Routes = [
   },
 
   // {
-  //   path: "", redirectTo: "home"
+  //    path: "", redirectTo: "register"
   // },
   {
     path: "all-staff", component: AllStaffsComponent
@@ -23,7 +23,7 @@ const routes: Routes = [
     path: "home", component: HomeComponent
   },
   {
-    path: "**", component: HomeComponent
+    path: "**", component: RegistersComponent
   },
 
 ];

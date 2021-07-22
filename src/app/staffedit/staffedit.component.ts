@@ -10,6 +10,7 @@ import { StaffServiceService } from '../staff-service.service';
   styleUrls: ['./staffedit.component.scss']
 })
 export class StaffeditComponent implements OnInit {
+  errSms: string = "";
 
   constructor(private activeRouter: ActivatedRoute, private router: Router, private service: StaffServiceService) { }
   staff: Staff;
@@ -25,10 +26,28 @@ export class StaffeditComponent implements OnInit {
   }
 
   updateStaff() {
-    this.service.updateStaff(this.staff).subscribe(data => {
-      console.log("Data" + data),
-        this.router.navigate(["/all-staff"]);
-    });
+    let stafName = this.staff.staffName;
+    let staffPhn = this.staff.staffPhoneNumber;
+    let staffEmail = this.staff.staffEmailId;
+    const regex = new RegExp('^[+][0-9-]+$'),
+      testPhn = regex.test(staffPhn);
+    const regexEmail = new RegExp('^[a-zA-z0-9_.+-]+@[a-zA-z0-9-]+\.[a-zA-z0-9-.]+$'),
+      testEmail = regexEmail.test(staffEmail);
+
+    if ('' + stafName == null || testPhn == false || testEmail == false) {
+      this.errSms = "Please Fill all the filed";
+
+    }
+    else {
+      this.errSms = "";
+      this.service.updateStaff(this.staff).subscribe(data => {
+        console.log("Data" + data),
+          this.router.navigate(["/all-staff"]);
+      });
+    }
+
   }
 
 }
+
+
